@@ -1,4 +1,4 @@
-const initialEntityList = [
+const entityList = [
     {
         id: 1,
         color: "black",
@@ -30,4 +30,9 @@ const initialEntityList = [
         isActive : false
     },
 ];
-export default initialEntityList;
+
+let initialScore = localStorage.getItem('score');
+
+export const initialBestScore = initialScore ? JSON.parse(initialScore) : 0;
+
+export const initialEntityList = entityList;

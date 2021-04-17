@@ -1,15 +1,14 @@
 import './App.css';
 import React, {useEffect, useState} from "react";
 import MainPage from "./Pages/MainPage";
+import {initialBestScore} from "./data/initialData"
 
 function App() {
     const [playerName, setPlayerName] = useState("");
-    const [bestScore, setBestScore] = useState(0);
+    const [bestScore, setBestScore] = useState(initialBestScore);
     const [isAuthorized, setAuthorized] = useState(false);
 
-    useEffect(() => {
-        setBestScore(localStorage.getItem("score"))
-    }, [bestScore]);
+
 
     function handleSubmit(event) {
 

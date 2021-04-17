@@ -1,8 +1,9 @@
 import React, {useState, useCallback} from 'react';
-import initialEntityList from "../data/initialData";
+import {initialEntityList} from "../data/initialData";
 import Entity from "../Components/Entity/Entity";
 import "./MainPage.css";
-import { useHistory } from "react-router-dom";
+import {initialBestScore} from "../data/initialData";
+
 
 function MainPage({name,bestScore}) {
     const [entityList, setEntityList] = useState(initialEntityList);
@@ -63,6 +64,7 @@ function MainPage({name,bestScore}) {
             alert("Error");
             setCountPlayerSequence(1);
             setGameSequence([]);
+            if(score>initialBestScore)
             localStorage.setItem("score",JSON.stringify(score));
             setScore(0);
 
