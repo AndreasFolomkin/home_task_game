@@ -2,8 +2,9 @@ import React, {useState, useCallback} from 'react';
 import initialEntityList from "../data/initialData";
 import Entity from "../Components/Entity/Entity";
 import "./MainPage.css";
+import { useHistory } from "react-router-dom";
 
-function MainPage(props) {
+function MainPage({name,bestScore}) {
     const [entityList, setEntityList] = useState(initialEntityList);
     const [score, setScore] = useState(0);
     const [gameSequence, setGameSequence] = useState([]);
@@ -48,7 +49,7 @@ function MainPage(props) {
 
     const handleClick = useCallback((id) => {
         setCountPlayerSequence(prevState => prevState + 1);
-        setScore(prevState => prevState + 10)
+        setScore(prevState => prevState + 10);
         check(id)
     }, [countPlayerSequence, gameSequence]);
 
@@ -62,7 +63,9 @@ function MainPage(props) {
             alert("Error");
             setCountPlayerSequence(1);
             setGameSequence([]);
-            setScore(0)
+            localStorage.setItem("score",JSON.stringify(score));
+            setScore(0);
+
         }
     }
 
@@ -78,7 +81,9 @@ function MainPage(props) {
                 {entityList.map((entity) => <Entity id={entity.id} color={entity.color} isActive={entity.isActive} key={entity.id} onCheck={handleClick}/>)}
             </div>
             <button onClick={() => start()}>Start</button>
+            <div> Name : {name}</div>
             <div> Total Score : {score}</div>
+            <div> Best Score : {bestScore}</div>
         </div>
 
     )
